@@ -5,6 +5,7 @@ import { SectionHeading } from "@/app/components/SectionHeading";
 import { Container } from "@/app/components/Container";
 import { Section } from "@/app/components/Section";
 import { SectionDivider } from "@/app/components/SectionDivider";
+import { ServicesShowcase } from "@/app/components/ServicesShowcase";
 
 export default function Home() {
   return (
@@ -43,9 +44,7 @@ export default function Home() {
             aria-hidden="true"
           />
           <Container className="relative">
-            <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 items-center">
-
-            </div>
+            <ServicesShowcase />
           </Container>
         </Section>
       </main>

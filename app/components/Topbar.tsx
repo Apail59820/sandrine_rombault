@@ -17,7 +17,10 @@ export default function Topbar() {
   const [location, setLocation] = useState<(typeof locations)[number]>(
     locations[0]
   );
+  const [locationMenuOpen, setLocationMenuOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const locationMenuTriggerId = "location-menu-trigger";
+  const locationMenuContentId = "location-menu-content";
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -47,8 +50,15 @@ export default function Topbar() {
             </nav>
 
             <div className="topbar__actions">
-              <DropdownMenu.Root>
+              <DropdownMenu.Root
+                open={locationMenuOpen}
+                onOpenChange={setLocationMenuOpen}
+              >
                 <DropdownMenu.Trigger
+                  id={locationMenuTriggerId}
+                  aria-controls={
+                    locationMenuOpen ? locationMenuContentId : undefined
+                  }
                   className="location-trigger"
                   aria-label="Choisir le cabinet"
                 >
@@ -58,6 +68,8 @@ export default function Topbar() {
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Portal>
                   <DropdownMenu.Content
+                    id={locationMenuContentId}
+                    aria-labelledby={locationMenuTriggerId}
                     className="location-menu"
                     align="end"
                     sideOffset={12}

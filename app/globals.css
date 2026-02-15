@@ -294,6 +294,82 @@ h6 {
     @apply mx-auto;
   }
 
+  .coverage-line {
+    max-width: 56rem;
+    margin: 0 auto;
+    text-align: center;
+    color: #3F3A37;
+    font-family: var(--font-heading), ui-serif, Georgia, serif;
+    font-size: clamp(1.25rem, 1.1rem + 0.68vw, 1.75rem);
+    line-height: 1.48;
+    letter-spacing: 0.008em;
+    text-wrap: pretty;
+    opacity: 0;
+    transform: translateY(22px) scale(0.985);
+    animation: coverageReveal 860ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .coverage-line::after {
+    content: "";
+    display: block;
+    width: clamp(7.5rem, 20vw, 11rem);
+    height: 0.16rem;
+    margin: 1.05rem auto 0;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      rgba(237, 180, 155, 0.2) 0%,
+      rgba(114, 181, 203, 0.85) 48%,
+      rgba(237, 180, 155, 0.2) 100%
+    );
+    transform: scaleX(0);
+    opacity: 0;
+    transform-origin: center;
+    animation: coverageRuleIn 940ms cubic-bezier(0.16, 1, 0.3, 1) 120ms forwards;
+  }
+
+  .coverage-line__places {
+    position: relative;
+    display: inline-block;
+    color: #2B5562;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0 0.16em;
+  }
+
+  .coverage-line__places::before {
+    content: "";
+    position: absolute;
+    left: -0.05em;
+    right: -0.05em;
+    bottom: 0.08em;
+    height: 0.42em;
+    border-radius: 0.32rem;
+    background: linear-gradient(
+      100deg,
+      rgba(237, 180, 155, 0.58),
+      rgba(114, 181, 203, 0.38)
+    );
+    z-index: -1;
+    opacity: 0;
+    transform: scaleX(0.1);
+    transform-origin: left center;
+    animation: coverageHighlightIn 980ms cubic-bezier(0.2, 1, 0.3, 1) 260ms forwards;
+  }
+
+  @media (max-width: 40rem) {
+    .coverage-line {
+      max-width: 28rem;
+      line-height: 1.56;
+      font-size: clamp(1.08rem, 0.98rem + 0.75vw, 1.34rem);
+    }
+
+    .coverage-line__places {
+      margin-top: 0.1rem;
+      letter-spacing: 0.025em;
+    }
+  }
+
   .container-site {
     @apply max-w-[75rem] mx-auto;
     @apply px-4 md:px-8 lg:px-[5rem];
@@ -571,6 +647,39 @@ h6 {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes coverageReveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes coverageRuleIn {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes coverageHighlightIn {
+  from {
+    opacity: 0;
+    transform: scaleX(0.1);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
   }
 }
 

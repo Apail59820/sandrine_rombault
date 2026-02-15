@@ -47,6 +47,19 @@ export default function Home() {
             <ServicesShowcase />
           </Container>
         </Section>
+
+        <SectionDivider
+          variant="steps"
+          className="text-surface-warm bg-surface-cool -mt-6"
+        />
+
+        <Section variant="warm" className="relative overflow-hidden">
+          <div
+            className="absolute inset-0 pattern-lines-cool opacity-70"
+            aria-hidden="true"
+          />
+          <Container className="relative"></Container>
+        </Section>
       </main>
     </>
   );

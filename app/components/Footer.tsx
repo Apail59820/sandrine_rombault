@@ -97,7 +97,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-white/10 pt-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between text-xs uppercase tracking-[0.16em] text-ink-inverse-muted">
-          <span>© 2025 Cabinet Sandrine Rombaut</span>
+          <span>© 2026 Cabinet Sandrine Rombaut</span>
           <span>Site réalisé avec soin</span>
         </div>
       </div>

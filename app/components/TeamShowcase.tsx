@@ -15,6 +15,8 @@ interface TeamMember {
   location: CabinetLocation;
   photo: string;
   photoAlt: string;
+  role: string;
+  statement: string;
   phone: string;
   phoneHref?: string;
   emailHref: string;
@@ -34,6 +36,9 @@ const teamMembers: TeamMember[] = [
     location: "Carvin",
     photo: "/sandrine_rombaut.webp",
     photoAlt: "Portrait de Sandrine Rombaut",
+    role: "Ergothérapeute D.E.",
+    statement:
+      "Bilans et accompagnements personnalisés pour soutenir chaque étape du développement.",
     phone: "06 XX XX XX XX",
     emailHref: "mailto:contact@cabinet-sandrine-rombaut.fr",
   },
@@ -43,6 +48,9 @@ const teamMembers: TeamMember[] = [
     location: "Carvin",
     photo: "/louise_thevel.jpg",
     photoAlt: "Portrait de Louise Thével",
+    role: "Ergothérapeute D.E.",
+    statement:
+      "Suivi centré sur l'autonomie de l'enfant, en lien étroit avec la famille et l'école.",
     phone: "06 XX XX XX XX",
     emailHref: "mailto:contact@cabinet-sandrine-rombaut.fr",
   },
@@ -52,6 +60,9 @@ const teamMembers: TeamMember[] = [
     location: "Carvin",
     photo: "/corentin_smuerzinski.jpeg",
     photoAlt: "Portrait de Corentin Smuerzinski",
+    role: "Ergothérapeute D.E.",
+    statement:
+      "Approche progressive et concrète pour renforcer les capacités fonctionnelles au quotidien.",
     phone: "06 XX XX XX XX",
     emailHref: "mailto:contact@cabinet-sandrine-rombaut.fr",
   },
@@ -61,6 +72,9 @@ const teamMembers: TeamMember[] = [
     location: "Haisnes",
     photo: "/tom_grebert.webp",
     photoAlt: "Portrait de Tom Grebert",
+    role: "Ergothérapeute D.E.",
+    statement:
+      "Interventions orientées vers les habiletés fines, l'organisation motrice et l'autonomie.",
     phone: "06 XX XX XX XX",
     emailHref: "mailto:contact@cabinet-sandrine-rombaut.fr",
   },
@@ -70,6 +84,9 @@ const teamMembers: TeamMember[] = [
     location: "Haisnes",
     photo: "/marie_plichon.webp",
     photoAlt: "Portrait de Marie Plichon",
+    role: "Ergothérapeute D.E.",
+    statement:
+      "Accompagnement attentif des jeunes enfants et coordination des relais autour de la famille.",
     phone: "06 XX XX XX XX",
     emailHref: "mailto:contact@cabinet-sandrine-rombaut.fr",
   },
@@ -169,65 +186,96 @@ export function TeamShowcase() {
                 } as CSSProperties
               }
             >
-              <div className={styles.photoFrame}>
-                <Image
-                  src={member.photo}
-                  alt={member.photoAlt}
-                  fill
-                  sizes="(max-width: 768px) 92vw, (max-width: 1200px) 40vw, 24vw"
-                  className={styles.photo}
-                />
-                <div className={styles.photoShade} aria-hidden="true" />
+              <div className={styles.cardMedia}>
+                <div className={styles.photoFrame}>
+                  <Image
+                    src={member.photo}
+                    alt={member.photoAlt}
+                    fill
+                    sizes="(max-width: 768px) 92vw, (max-width: 1200px) 40vw, 24vw"
+                    className={styles.photo}
+                  />
+                  <div className={styles.photoShade} aria-hidden="true" />
+                  <div className={styles.photoNoise} aria-hidden="true" />
+
+                  <div className={styles.photoMeta}>
+                    <p className={styles.memberIndex}>
+                      {String(index + 1).padStart(2, "0")}
+                    </p>
+                    <p className={styles.locationBadge}>Cabinet {member.location}</p>
+                  </div>
+
+                  <p className={styles.photoLabel}>Ergothérapie pédiatrique</p>
+                </div>
               </div>
 
-              <div className={styles.cardHead}>
-                <p className={styles.memberIndex}>
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <h3 className={styles.memberName}>{member.name}</h3>
-                <p className={styles.memberRole}>Ergothérapie</p>
-              </div>
+              <div className={styles.cardBody}>
+                <div className={styles.cardHead}>
+                  <h3 className={styles.memberName}>{member.name}</h3>
+                  <p className={styles.memberRole}>{member.role}</p>
+                  <p className={styles.memberZone}>
+                    Secteur {member.location} et alentours
+                  </p>
+                  <p className={styles.memberStatement}>{member.statement}</p>
+                </div>
 
-              <div className={styles.actions}>
-                <button
-                  type="button"
-                  className={styles.phoneButton}
-                  aria-expanded={isPhoneOpen}
-                  aria-controls={phonePanelId}
-                  onClick={() =>
-                    setOpenPhoneId((current) =>
-                      current === member.id ? "" : member.id
-                    )
-                  }
+                <div className={styles.actions}>
+                  <button
+                    type="button"
+                    className={styles.phoneButton}
+                    aria-expanded={isPhoneOpen}
+                    aria-controls={phonePanelId}
+                    onClick={() =>
+                      setOpenPhoneId((current) =>
+                        current === member.id ? "" : member.id
+                      )
+                    }
+                  >
+                    <PhoneIcon />
+                    <span className={styles.phoneButtonText}>
+                      <span
+                        className={`${styles.actionLabel} ${styles.actionLabelDesktop}`}
+                      >
+                        {isPhoneOpen ? "Masquer le numéro" : "Voir le numéro"}
+                      </span>
+                      <span
+                        className={`${styles.actionLabel} ${styles.actionLabelMobile}`}
+                      >
+                        {isPhoneOpen ? "Masquer" : "Numéro"}
+                      </span>
+                      <span className={styles.actionHint}>
+                        Contact téléphonique
+                      </span>
+                    </span>
+                  </button>
+
+                  <a
+                    href={`${member.emailHref}?subject=${encodeURIComponent(
+                      `Prise de contact - ${member.name}`
+                    )}`}
+                    className={styles.mailButton}
+                    aria-label={`Contacter ${member.name} par email`}
+                  >
+                    <MailIcon />
+                    <span className={styles.mailText}>Email</span>
+                  </a>
+                </div>
+
+                <div
+                  id={phonePanelId}
+                  className={styles.phonePanel}
+                  aria-hidden={!isPhoneOpen}
                 >
-                  <PhoneIcon />
-                  <span>{isPhoneOpen ? "Masquer" : "Afficher"} le numéro</span>
-                </button>
-
-                <a
-                  href={`${member.emailHref}?subject=${encodeURIComponent(
-                    `Prise de contact - ${member.name}`
-                  )}`}
-                  className={styles.mailButton}
-                  aria-label={`Contacter ${member.name} par email`}
-                >
-                  <MailIcon />
-                </a>
-              </div>
-
-              <div
-                id={phonePanelId}
-                className={styles.phonePanel}
-                aria-hidden={!isPhoneOpen}
-              >
-                <div className={styles.phonePanelInner}>
-                  {member.phoneHref ? (
-                    <a href={member.phoneHref} className={styles.phoneValue}>
-                      {member.phone}
-                    </a>
-                  ) : (
-                    <span className={styles.phoneValue}>{member.phone}</span>
-                  )}
+                  <div className={styles.phonePanelInner}>
+                    <p className={styles.phonePanelLabel}>Ligne directe</p>
+                    {member.phoneHref ? (
+                      <a href={member.phoneHref} className={styles.phoneValue}>
+                        {member.phone}
+                      </a>
+                    ) : (
+                      <span className={styles.phoneValue}>{member.phone}</span>
+                    )}
+                  </div>
                 </div>
               </div>
             </article>

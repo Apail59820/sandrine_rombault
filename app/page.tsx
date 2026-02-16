@@ -15,6 +15,72 @@ import Image from "next/image";
 export default function Home() {
   const appointmentUrl =
     "https://www.doctolib.fr/cabinet-paramedical/carvin/cabinet-ergotherapie-sandrine-rombaut?pid=practice-233594";
+  const trainings = [
+    {
+      title: "TND : autisme, dys, TDAH, TDI - école des TND",
+      provider: "CHU de Montpellier",
+    },
+    {
+      title: "L'écriture et l'ergothérapie",
+      provider: "Josiane Caron",
+    },
+    {
+      title: "Trouble du spectre de l'autisme et adaptation de l'environnement",
+      provider: "Edi Formation",
+    },
+    {
+      title: "Trouble sensoriel dans les TND",
+      provider: "Octopus Formation",
+    },
+    {
+      title: "Trouble du processus sensoriel",
+      provider: "Manche Santé Formation",
+    },
+    {
+      title: "Métacognition - apprendre à apprendre",
+      provider: "Octopus",
+    },
+    {
+      title: "Ergothérapie et trouble alimentaire en pédiatrie",
+      provider: "Hestia Formation",
+    },
+    {
+      title: "Ergothérapie et TSA",
+      provider: "Conseil Ergolib",
+    },
+    {
+      title:
+        "Évaluation et rééducation en ergothérapie des enfants présentant des troubles des apprentissages",
+      provider: "ANFE",
+    },
+    {
+      title:
+        "Facteurs influençant l'écriture manuelle et moyens de rééducation de la dysgraphie",
+      provider: "ANFE",
+    },
+    {
+      title:
+        "Outils numériques de compensation pour des enfants présentant des troubles des apprentissages et évaluation",
+      provider: "Santé Formation",
+    },
+    {
+      title: "Analyse modulaire appliquée au graphisme",
+      provider: "Cabergo",
+    },
+    {
+      title:
+        "Accompagnement en ergothérapie de l'enfant présentant un trouble du spectre autistique",
+      provider: "Santé Formation",
+    },
+    {
+      title: "Trouble du processus sensoriel, niveau 1",
+      provider: "Santé Formation",
+    },
+    {
+      title: "D.U. Ergonomie système du travail",
+      provider: "Université de Lille 2",
+    },
+  ];
 
   return (
     <>
@@ -24,7 +90,7 @@ export default function Home() {
 
         <Section variant="warm" className="relative overflow-hidden !pt-20 !pb-20">
           <div
-            className="absolute inset-0 pattern-dots-warm opacity-70"
+            className="absolute inset-0 pattern-lines-cool opacity-70"
             aria-hidden="true"
           />
           <div
@@ -145,12 +211,11 @@ export default function Home() {
           </Container>
         </Section>
 
-        <SectionDivider
-          variant="wave"
-          className="text-surface-warm bg-surface-warm -mt-6"
-        />
-
         <Section variant="warm" className="relative overflow-hidden">
+          <div
+            className="absolute inset-0 pattern-lines-cool opacity-70"
+            aria-hidden="true"
+          />
           <div
             className="absolute inset-0 pattern-dots-warm opacity-60"
             aria-hidden="true"
@@ -318,6 +383,56 @@ export default function Home() {
             </div>
           </Container>
         </Section>
+
+        <SectionDivider
+          variant="line"
+          className="bg-surface-page text-[rgba(149,146,144,0.34)] [&_svg]:h-[2rem] md:[&_svg]:h-[2.2rem]"
+        />
+
+        <section
+          aria-labelledby="formations-title"
+          className="bg-surface-page py-8 md:py-10"
+        >
+          <Container>
+            <div className="mx-auto max-w-[72rem]">
+              <p
+                id="formations-title"
+                className="text-[0.72rem] uppercase tracking-[0.16em] text-ink-muted"
+              >
+                Nos formations :
+              </p>
+              <div
+                className="mt-3 h-px w-full bg-border-subtle-white"
+                aria-hidden="true"
+              />
+              <ul className="mt-1 grid gap-x-8 md:grid-cols-2">
+                {trainings.map((training) => (
+                  <li
+                    key={training.title}
+                    className="flex items-start gap-2.5 border-b border-border-subtle-white py-3.5 text-[0.92rem] leading-[1.6] text-ink-secondary"
+                  >
+                    <span
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-mist-blue"
+                      aria-hidden="true"
+                    />
+                    <p>
+                      <span className="text-ink-primary">{training.title}</span>
+                      <span className="text-ink-muted">
+                        {" "}
+                        - {training.provider}
+                      </span>
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Container>
+        </section>
+
+        <SectionDivider
+          variant="line"
+          className="bg-surface-page text-[rgba(149,146,144,0.30)] [&_svg]:h-[2rem] md:[&_svg]:h-[2.2rem]"
+        />
       </main>
     </>
   );

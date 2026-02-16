@@ -14,8 +14,6 @@ interface ServiceCategory {
   id: string;
   title: string;
   subtitle: string;
-  lead: string;
-  highlights: string[];
   image: string;
   imageAlt: string;
   tone: "warm" | "cool";
@@ -29,13 +27,6 @@ const serviceCategories: ServiceCategory[] = [
     id: "pediatrie",
     title: "Pédiatrie",
     subtitle: "Enfants et adolescents",
-    lead:
-      "Un accompagnement ludique pour développer la confiance, l'autonomie et le plaisir d'agir au quotidien.",
-    highlights: [
-      "Bilans personnalisés",
-      "Jeu thérapeutique",
-      "Lien école-famille",
-    ],
     image:
       "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1600&q=80",
     imageAlt: "Jeune enfant en activité d'apprentissage",
@@ -77,13 +68,6 @@ const serviceCategories: ServiceCategory[] = [
     id: "adultes-seniors",
     title: "Adultes / Personnes âgées",
     subtitle: "Réadaptation et maintien à domicile",
-    lead:
-      "Des solutions concrètes pour préserver l'indépendance, sécuriser les activités du quotidien et améliorer la qualité de vie.",
-    highlights: [
-      "Rééducation fonctionnelle",
-      "Prévention des chutes",
-      "Adaptation du domicile",
-    ],
     image:
       "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1600&q=80",
     imageAlt: "Accompagnement en rééducation d'une personne âgée",
@@ -263,18 +247,6 @@ export function ServicesShowcase() {
                     className={styles.image}
                   />
                   <div className={styles.imageShade} aria-hidden="true" />
-                </div>
-
-                <div className={styles.contextBlock}>
-                  <p className={styles.lead}>{category.lead}</p>
-
-                  <ul className={styles.highlightList}>
-                    {category.highlights.map((highlight) => (
-                      <li key={highlight} className={styles.highlightItem}>
-                        {highlight}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
 
                 <p className={styles.servicesLabel}>Interventions clés</p>

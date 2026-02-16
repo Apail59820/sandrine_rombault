@@ -3,6 +3,7 @@ import { Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
 import React from "react";
 import { CabinetLocationProvider } from "@/app/context/CabinetLocationContext";
+import { Footer } from "@/app/components/Footer";
 
 const playfair = Playfair_Display({
   variable: "--font-heading",
@@ -34,6 +35,7 @@ export default function RootLayout({
         className={`${playfair.variable} ${montserrat.variable} antialiased font-body`}
       >
         <CabinetLocationProvider>{children}</CabinetLocationProvider>
+        <Footer />
       </body>
     </html>
   );

@@ -7,42 +7,6 @@
   gap: clamp(1rem, 1.5vw, 1.4rem);
 }
 
-.shell::before,
-.shell::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.shell::before {
-  width: min(40rem, 82vw);
-  height: min(40rem, 82vw);
-  left: -16rem;
-  top: -13rem;
-  border-radius: 999px;
-  background: radial-gradient(
-    circle,
-    rgba(237, 180, 155, 0.3) 0%,
-    rgba(237, 180, 155, 0.08) 48%,
-    rgba(237, 180, 155, 0) 76%
-  );
-}
-
-.shell::after {
-  width: min(38rem, 78vw);
-  height: min(38rem, 78vw);
-  right: -14rem;
-  bottom: -14rem;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(114, 181, 203, 0.28) 0%,
-    rgba(114, 181, 203, 0.08) 48%,
-    rgba(114, 181, 203, 0) 76%
-  );
-}
-
 .header {
   max-width: 72rem;
   margin-inline: auto;

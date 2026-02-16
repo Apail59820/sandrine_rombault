@@ -1,0 +1,393 @@
+.shell {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  gap: clamp(1.5rem, 1.05rem + 1.8vw, 2.9rem);
+}
+
+.header {
+  max-width: 62rem;
+  margin-inline: auto;
+  text-align: center;
+  opacity: 0;
+  transform: translate3d(0, 24px, 0) scale(0.99);
+  animation: revealTitle 740ms cubic-bezier(0.22, 1, 0.36, 1) 80ms forwards;
+}
+
+.eyebrow {
+  margin: 0;
+  color: rgba(52, 48, 46, 0.62);
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0.95rem 0 0;
+  color: var(--color-ink-primary);
+  font-family: var(--font-heading), ui-serif, Georgia, serif;
+  font-size: clamp(1.95rem, 1.44rem + 1.95vw, 3.3rem);
+  line-height: 1.07;
+  letter-spacing: -0.014em;
+  text-wrap: balance;
+}
+
+.intro {
+  margin: 1rem auto 0;
+  max-width: 46rem;
+  color: #635e5b;
+  font-size: clamp(0.98rem, 0.92rem + 0.24vw, 1.1rem);
+  line-height: 1.78;
+  text-wrap: pretty;
+}
+
+.commitment {
+  max-width: 62rem;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(0.85rem, 0.62rem + 0.85vw, 1.2rem);
+  padding: clamp(1rem, 0.84rem + 0.62vw, 1.35rem);
+  border-radius: 1.25rem 1.4rem 1.05rem 1.55rem;
+  border: 1px solid #e4d7cf;
+  background:
+    linear-gradient(
+      110deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.8) 100%
+    ),
+    radial-gradient(
+      120% 120% at 12% 0%,
+      rgba(114, 181, 203, 0.22) 0%,
+      rgba(114, 181, 203, 0) 45%
+    ),
+    radial-gradient(
+      120% 120% at 85% 115%,
+      rgba(237, 180, 155, 0.25) 0%,
+      rgba(237, 180, 155, 0) 48%
+    );
+  box-shadow:
+    0 22px 46px rgba(51, 42, 38, 0.11),
+    0 1px 0 rgba(255, 255, 255, 0.7) inset;
+  opacity: 0;
+  transform: translate3d(0, 22px, 0) scale(0.99);
+  animation: revealCard 760ms cubic-bezier(0.22, 1, 0.36, 1) 160ms forwards;
+}
+
+.commitmentIcon {
+  width: clamp(2.8rem, 2.55rem + 1vw, 3.4rem);
+  height: clamp(2.8rem, 2.55rem + 1vw, 3.4rem);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #9f5f4b;
+  background:
+    radial-gradient(
+      120% 120% at 20% 25%,
+      rgba(255, 255, 255, 0.92) 0%,
+      rgba(255, 255, 255, 0.2) 55%
+    ),
+    linear-gradient(140deg, rgba(237, 180, 155, 0.55), rgba(114, 181, 203, 0.32));
+  border: 1px solid rgba(159, 95, 75, 0.22);
+  box-shadow:
+    0 12px 24px rgba(84, 59, 49, 0.2),
+    0 1px 0 rgba(255, 255, 255, 0.65) inset;
+}
+
+.commitmentIcon svg {
+  width: 1.18rem;
+  height: 1.18rem;
+}
+
+.commitmentText {
+  margin: 0;
+  color: #534d4a;
+  font-size: clamp(0.95rem, 0.9rem + 0.22vw, 1.06rem);
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+  gap: clamp(1rem, 0.74rem + 1vw, 1.5rem);
+}
+
+.card {
+  --accent: #d79b83;
+  --accent-ink: #6f4636;
+  --accent-glow: rgba(237, 180, 155, 0.25);
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 1.1rem;
+  border-radius: 1.8rem 1.24rem 1.9rem 1.38rem;
+  border: 1px solid #e4d8d0;
+  padding: clamp(1rem, 0.9rem + 0.42vw, 1.35rem);
+  background:
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(255, 255, 255, 1) 56%
+    ),
+    radial-gradient(
+      130% 100% at 96% -4%,
+      rgba(237, 180, 155, 0.24) 0%,
+      rgba(237, 180, 155, 0) 52%
+    ),
+    #ffffff;
+  box-shadow:
+    0 24px 54px rgba(53, 45, 40, 0.13),
+    0 2px 0 rgba(255, 255, 255, 0.88) inset;
+  overflow: hidden;
+  opacity: 0;
+  transform: translate3d(0, 24px, 0) scale(0.988);
+  animation: revealCard 760ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.card::before {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent) 86%, white),
+    color-mix(in srgb, var(--accent) 36%, white)
+  );
+}
+
+.card::after {
+  width: 11rem;
+  height: 11rem;
+  right: -3.3rem;
+  bottom: -5.4rem;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    var(--accent-glow) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translateY(-8px) scale(1.005);
+  box-shadow:
+    0 32px 66px rgba(53, 45, 40, 0.16),
+    0 2px 0 rgba(255, 255, 255, 0.88) inset;
+}
+
+.card:nth-of-type(2) {
+  animation-delay: 240ms;
+}
+
+.cardPediatric {
+  --accent: #d59a82;
+  --accent-ink: #6f4435;
+  --accent-glow: rgba(237, 180, 155, 0.3);
+}
+
+.cardAdult {
+  --accent: #74b3c6;
+  --accent-ink: #2a5867;
+  --accent-glow: rgba(114, 181, 203, 0.28);
+  border-radius: 1.24rem 1.8rem 1.42rem 1.95rem;
+  background:
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(255, 255, 255, 1) 56%
+    ),
+    radial-gradient(
+      130% 100% at 4% -4%,
+      rgba(114, 181, 203, 0.24) 0%,
+      rgba(114, 181, 203, 0) 52%
+    ),
+    #ffffff;
+}
+
+.cardHeader {
+  display: grid;
+  gap: 0.64rem;
+}
+
+.cardTag {
+  margin: 0;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.54rem;
+  padding-inline: 0.74rem;
+  border-radius: 999px;
+  color: color-mix(in srgb, var(--accent-ink) 90%, white);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: color-mix(in srgb, var(--accent) 16%, white);
+  border: 1px solid color-mix(in srgb, var(--accent) 34%, white);
+}
+
+.cardTitle {
+  margin: 0;
+  color: var(--color-ink-primary);
+  font-family: var(--font-heading), ui-serif, Georgia, serif;
+  font-size: clamp(1.38rem, 1.2rem + 0.82vw, 1.88rem);
+  line-height: 1.12;
+}
+
+.cardLead {
+  margin: 0;
+  color: #605a57;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.priceList {
+  margin: 0;
+  display: grid;
+  gap: 0.58rem;
+}
+
+.priceRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 0.82rem 0.84rem;
+  border-radius: 0.98rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, #e8ddd6);
+  background:
+    linear-gradient(
+      120deg,
+      color-mix(in srgb, var(--accent) 8%, white) 0%,
+      rgba(255, 255, 255, 0.98) 56%
+    );
+}
+
+.priceLabel {
+  margin: 0;
+  color: #4e4845;
+  font-size: 0.94rem;
+  line-height: 1.52;
+  text-wrap: pretty;
+}
+
+.priceMeta {
+  margin: 0;
+  display: inline-grid;
+  justify-items: end;
+  gap: 0.22rem;
+}
+
+.priceValue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.86rem;
+  padding: 0.25rem 0.72rem;
+  border-radius: 999px;
+  color: color-mix(in srgb, var(--accent-ink) 92%, white);
+  font-size: 0.83rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, white);
+  background: color-mix(in srgb, var(--accent) 14%, white);
+  white-space: nowrap;
+}
+
+.priceNote {
+  display: block;
+  color: #6b6563;
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 52rem) {
+  .header {
+    text-align: left;
+    margin-inline: 0;
+  }
+
+  .intro {
+    margin-inline: 0;
+  }
+
+  .commitment {
+    grid-template-columns: 1fr;
+    justify-items: start;
+    border-radius: 1.12rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    border-radius: 1.25rem;
+  }
+
+  .priceRow {
+    grid-template-columns: 1fr;
+    gap: 0.58rem;
+    align-items: start;
+  }
+
+  .priceMeta {
+    justify-items: start;
+  }
+
+  .priceValue {
+    white-space: normal;
+  }
+}
+
+@keyframes revealTitle {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes revealCard {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0) scale(0.988);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .commitment,
+  .card {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+
+  .card:hover,
+  .card:focus-within {
+    transform: none;
+  }
+}

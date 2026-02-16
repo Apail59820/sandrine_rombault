@@ -8,6 +8,7 @@ import { SectionDivider } from "@/app/components/SectionDivider";
 import { ServicesShowcase } from "@/app/components/ServicesShowcase";
 import { TeamShowcase } from "@/app/components/TeamShowcase";
 import { LocationShowcase } from "@/app/components/LocationShowcase";
+import { TariffsShowcase } from "@/app/components/TariffsShowcase";
 
 export default function Home() {
   return (
@@ -76,6 +77,21 @@ export default function Home() {
             aria-hidden="true"
           />
           <LocationShowcase />
+        </Section>
+
+        <SectionDivider
+          variant="wave"
+          className="text-surface-warm bg-surface-cool -mt-6"
+        />
+
+        <Section variant="warm" className="relative overflow-hidden">
+          <div
+            className="absolute inset-0 pattern-dots-warm opacity-60"
+            aria-hidden="true"
+          />
+          <Container className="relative">
+            <TariffsShowcase />
+          </Container>
         </Section>
       </main>
     </>

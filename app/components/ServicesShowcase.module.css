@@ -12,34 +12,6 @@
   z-index: -1;
 }
 
-.shell::before {
-  width: min(34rem, 72vw);
-  height: min(34rem, 72vw);
-  top: -14rem;
-  left: -14rem;
-  border-radius: 999px;
-  background: radial-gradient(
-    circle,
-    rgba(237, 180, 155, 0.2) 0%,
-    rgba(237, 180, 155, 0.06) 48%,
-    rgba(237, 180, 155, 0) 76%
-  );
-}
-
-.shell::after {
-  width: min(34rem, 72vw);
-  height: min(34rem, 72vw);
-  right: -14rem;
-  bottom: -14rem;
-  border-radius: 999px;
-  background: radial-gradient(
-    circle,
-    rgba(114, 181, 203, 0.18) 0%,
-    rgba(114, 181, 203, 0.05) 50%,
-    rgba(114, 181, 203, 0) 78%
-  );
-}
-
 .header {
   max-width: 66rem;
   margin-inline: auto;

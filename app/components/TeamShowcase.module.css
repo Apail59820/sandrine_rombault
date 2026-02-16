@@ -5,41 +5,6 @@
   gap: clamp(2.4rem, 1.55rem + 2.25vw, 4.3rem);
 }
 
-.shell::before,
-.shell::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.shell::before {
-  width: min(38rem, 76vw);
-  height: min(38rem, 76vw);
-  top: -15rem;
-  left: -14rem;
-  border-radius: 999px;
-  background: radial-gradient(
-    circle,
-    rgba(237, 180, 155, 0.3) 0%,
-    rgba(237, 180, 155, 0.08) 46%,
-    rgba(237, 180, 155, 0) 77%
-  );
-}
-
-.shell::after {
-  width: min(36rem, 72vw);
-  height: min(36rem, 72vw);
-  right: -12rem;
-  bottom: -13rem;
-  border-radius: 46% 54% 52% 48% / 44% 48% 52% 56%;
-  background: radial-gradient(
-    circle,
-    rgba(114, 181, 203, 0.26) 0%,
-    rgba(114, 181, 203, 0.08) 48%,
-    rgba(114, 181, 203, 0) 76%
-  );
-}
 
 .header {
   max-width: 62rem;

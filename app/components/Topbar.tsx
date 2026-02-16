@@ -8,8 +8,6 @@ import {
 } from "@/app/context/CabinetLocationContext";
 
 const navLinks = [
-  { label: "Accueil", href: "#accueil" },
-  { label: "A Propos", href: "#a-propos" },
   { label: "Équipe", href: "#equipe" },
   { label: "Services", href: "#services" },
   { label: "Tarifs", href: "#tarifs" },
@@ -196,7 +194,7 @@ export default function Topbar() {
         }
 
         .topbar__row--primary {
-          flex-wrap: wrap;
+          flex-wrap: nowrap;
         }
 
         .brand {
@@ -245,6 +243,7 @@ export default function Topbar() {
           display: inline-flex;
           align-items: center;
           gap: 12px;
+          flex-shrink: 0;
           margin-left: auto;
         }
 
@@ -255,6 +254,7 @@ export default function Topbar() {
           flex-wrap: wrap;
           justify-content: center;
           flex: 1 1 auto;
+          min-width: 0;
           margin-inline: clamp(16px, 5vw, 72px);
           padding: 0;
           border-radius: 0;
@@ -528,6 +528,10 @@ export default function Topbar() {
         @media (max-width: 1024px) {
           .topbar__frame {
             gap: 12px;
+          }
+
+          .topbar__row--primary {
+            flex-wrap: wrap;
           }
 
           .nav--desktop {

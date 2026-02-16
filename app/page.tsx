@@ -73,7 +73,7 @@ export default function Home() {
 
         <Section variant="cool" className="relative overflow-hidden">
           <div
-            className="absolute inset-0 pattern-dots-warm opacity-60"
+            className="absolute inset-0 pattern-lines-cool opacity-70"
             aria-hidden="true"
           />
           <LocationShowcase />
@@ -81,17 +81,30 @@ export default function Home() {
 
         <SectionDivider
           variant="wave"
-          className="text-surface-warm bg-surface-cool -mt-6"
+          className="text-surface-warm bg-[rgb(229,234,242)] -mt-6"
         />
 
         <Section variant="warm" className="relative overflow-hidden">
           <div
-            className="absolute inset-0 pattern-dots-warm opacity-60"
+            className="absolute inset-0 pattern-lines-cool opacity-70"
             aria-hidden="true"
           />
           <Container className="relative">
             <TariffsShowcase />
           </Container>
+        </Section>
+
+        <SectionDivider
+          variant="wave"
+          className="text-surface-cool bg-surface-warm -mt-6"
+        />
+
+        <Section variant="cool" className="relative overflow-hidden">
+          <div
+            className="absolute inset-0 pattern-lines-cool opacity-70"
+            aria-hidden="true"
+          />
+
         </Section>
       </main>
     </>

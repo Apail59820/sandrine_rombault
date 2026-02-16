@@ -1,0 +1,390 @@
+.shell {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  gap: clamp(2.2rem, 1.5rem + 2.2vw, 4rem);
+}
+
+.shell::before,
+.shell::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.shell::before {
+  width: min(36rem, 74vw);
+  height: min(36rem, 74vw);
+  top: -14rem;
+  left: -13rem;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    rgba(237, 180, 155, 0.26) 0%,
+    rgba(237, 180, 155, 0.06) 45%,
+    rgba(237, 180, 155, 0) 76%
+  );
+}
+
+.shell::after {
+  width: min(34rem, 70vw);
+  height: min(34rem, 70vw);
+  right: -11rem;
+  bottom: -12rem;
+  border-radius: 48% 52% 54% 46% / 46% 48% 52% 54%;
+  background: radial-gradient(
+    circle,
+    rgba(114, 181, 203, 0.22) 0%,
+    rgba(114, 181, 203, 0.06) 48%,
+    rgba(114, 181, 203, 0) 76%
+  );
+}
+
+.header {
+  max-width: 60rem;
+  margin-inline: auto;
+  text-align: center;
+  opacity: 0;
+  transform: translate3d(0, 24px, 0) scale(0.99);
+  transition:
+    opacity 620ms ease,
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.isVisible .header {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.eyebrow {
+  margin: 0;
+  color: rgba(52, 48, 46, 0.62);
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0.95rem 0 0;
+  color: var(--color-ink-primary);
+  font-family: var(--font-heading), ui-serif, Georgia, serif;
+  font-size: clamp(1.9rem, 1.42rem + 2vw, 3.45rem);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.rotatingTitle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.24em;
+  padding: 0.14em 0.52em 0.18em;
+  border-radius: 999px;
+  color: #2a5867;
+  background: linear-gradient(
+    90deg,
+    rgba(237, 180, 155, 0.34),
+    rgba(114, 181, 203, 0.4)
+  );
+  border: 1px solid rgba(114, 181, 203, 0.22);
+  transition:
+    opacity 220ms ease,
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rotatingTitleIn {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.rotatingTitleOut {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.985);
+}
+
+.intro {
+  margin: 1.18rem auto 0;
+  max-width: 46rem;
+  color: #635e5b;
+  font-size: clamp(0.99rem, 0.93rem + 0.26vw, 1.12rem);
+  line-height: 1.82;
+  text-wrap: pretty;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+  gap: clamp(1rem, 0.75rem + 1.2vw, 1.7rem);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.1rem, 0.9rem + 0.7vw, 1.45rem);
+  border: 1px solid #e8dfd8;
+  border-radius: 2.1rem 1.15rem 1.85rem 1.3rem;
+  background:
+    radial-gradient(
+      115% 70% at 100% 0%,
+      rgba(114, 181, 203, 0.1) 0%,
+      rgba(255, 255, 255, 0) 55%
+    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95), #ffffff),
+    #ffffff;
+  box-shadow:
+    0 20px 44px rgba(53, 46, 43, 0.11),
+    0 1px 0 rgba(255, 255, 255, 0.95) inset;
+  opacity: 0;
+  transform: translate3d(0, 24px, 0) scale(0.985) rotate(-0.35deg);
+  transition:
+    opacity 580ms ease var(--card-delay, 0ms),
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1) var(--card-delay, 0ms),
+    box-shadow 280ms ease,
+    border-color 280ms ease;
+  will-change: transform, opacity;
+}
+
+.card:nth-child(2n) {
+  border-radius: 1.2rem 2rem 1.3rem 2.1rem;
+  background:
+    radial-gradient(
+      120% 70% at 0% 0%,
+      rgba(237, 180, 155, 0.15) 0%,
+      rgba(255, 255, 255, 0) 55%
+    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95), #ffffff),
+    #ffffff;
+}
+
+.isVisible .card {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1) rotate(0);
+}
+
+.card:hover {
+  border-color: #d9cfca;
+  box-shadow:
+    0 26px 52px rgba(53, 46, 43, 0.15),
+    0 1px 0 rgba(255, 255, 255, 0.95) inset;
+}
+
+.cardHead {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.photoFrame {
+  position: relative;
+  width: 100%;
+  height: clamp(12.5rem, 34vw, 14.5rem);
+  border-radius: 1.4rem 0.95rem 1.25rem 1.65rem;
+  overflow: hidden;
+  border: 1px solid #e5dad4;
+  box-shadow: 0 18px 34px rgba(43, 36, 33, 0.14);
+}
+
+.photo {
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .photo {
+  transform: scale(1.06);
+}
+
+.photoShade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(20, 13, 10, 0.32) 100%
+    ),
+    radial-gradient(
+      120% 70% at 92% 0%,
+      rgba(114, 181, 203, 0.34) 0%,
+      rgba(114, 181, 203, 0) 62%
+    );
+}
+
+.memberIndex {
+  margin: 0;
+  width: fit-content;
+  padding: 0.32rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(114, 181, 203, 0.24);
+  background: rgba(114, 181, 203, 0.1);
+  color: #2a5867;
+  font-size: 0.67rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.memberName {
+  margin: 0;
+  color: var(--color-ink-primary);
+  font-family: var(--font-heading), ui-serif, Georgia, serif;
+  font-size: clamp(1.28rem, 1.1rem + 0.5vw, 1.62rem);
+  line-height: 1.15;
+}
+
+.memberRole {
+  margin: 0;
+  color: #6c6664;
+  font-size: 0.82rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.62rem;
+}
+
+.phoneButton {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.48rem;
+  border: 1px solid #ddd3ce;
+  border-radius: 999px;
+  background: #fffdfc;
+  color: #524c4a;
+  min-height: 2.46rem;
+  padding: 0.36rem 0.9rem;
+  font-size: 0.79rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    border-color 200ms ease,
+    transform 200ms ease,
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+.phoneButton:hover {
+  border-color: #b6a9a2;
+  background: #fffaf7;
+  transform: translateY(-1px);
+}
+
+.mailButton {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  border: 1px solid #ddd3ce;
+  background: #fff;
+  color: #544e4c;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    border-color 200ms ease,
+    transform 200ms ease,
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+.mailButton:hover {
+  border-color: #72b5cb;
+  color: #2a5867;
+  background: #f2f9fc;
+  transform: translateY(-1px);
+}
+
+.phoneButton:focus-visible,
+.mailButton:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: 3px;
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.phonePanel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    grid-template-rows 440ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 240ms ease,
+    transform 300ms ease;
+}
+
+.card[data-open="true"] .phonePanel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.phonePanelInner {
+  overflow: hidden;
+}
+
+.phoneValue {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.95rem;
+  border: 1px dashed #cfc5be;
+  color: #3f3a37;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  background: rgba(252, 247, 241, 0.85);
+}
+
+@media (max-width: 39.999rem) {
+  .title {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .rotatingTitle {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 70rem) {
+  .card:nth-child(2),
+  .card:nth-child(5) {
+    transform: translateY(0.8rem) scale(0.985) rotate(-0.35deg);
+  }
+
+  .isVisible .card:nth-child(2),
+  .isVisible .card:nth-child(5) {
+    transform: translateY(0.8rem) scale(1) rotate(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .card,
+  .rotatingTitle,
+  .phoneButton,
+  .mailButton,
+  .phonePanel,
+  .photo {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .header,
+  .card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

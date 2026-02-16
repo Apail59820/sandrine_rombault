@@ -6,6 +6,7 @@ import { Container } from "@/app/components/Container";
 import { Section } from "@/app/components/Section";
 import { SectionDivider } from "@/app/components/SectionDivider";
 import { ServicesShowcase } from "@/app/components/ServicesShowcase";
+import { TeamShowcase } from "@/app/components/TeamShowcase";
 
 export default function Home() {
   return (
@@ -58,7 +59,9 @@ export default function Home() {
             className="absolute inset-0 pattern-lines-cool opacity-70"
             aria-hidden="true"
           />
-          <Container className="relative"></Container>
+          <Container className="relative">
+            <TeamShowcase />
+          </Container>
         </Section>
       </main>
     </>

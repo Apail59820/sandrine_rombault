@@ -9,6 +9,7 @@ import { ServicesShowcase } from "@/app/components/ServicesShowcase";
 import { TeamShowcase } from "@/app/components/TeamShowcase";
 import { LocationShowcase } from "@/app/components/LocationShowcase";
 import { TariffsShowcase } from "@/app/components/TariffsShowcase";
+import { FaqShowcase } from "@/app/components/FaqShowcase";
 
 export default function Home() {
   return (
@@ -104,7 +105,9 @@ export default function Home() {
             className="absolute inset-0 pattern-lines-cool opacity-70"
             aria-hidden="true"
           />
-
+          <Container className="relative">
+            <FaqShowcase />
+          </Container>
         </Section>
       </main>
     </>

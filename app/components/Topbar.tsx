@@ -2,6 +2,10 @@
 
 import { useState } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import {
+  cabinetLocations,
+  useCabinetLocation,
+} from "@/app/context/CabinetLocationContext";
 
 const navLinks = [
   { label: "Accueil", href: "#accueil" },
@@ -11,16 +15,9 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-const locations = ["Carvin", "Haines"] as const;
-
 export default function Topbar() {
-  const [location, setLocation] = useState<(typeof locations)[number]>(
-    locations[0]
-  );
-  const [locationMenuOpen, setLocationMenuOpen] = useState(false);
+  const { location, setLocation } = useCabinetLocation();
   const [menuOpen, setMenuOpen] = useState(false);
-  const locationMenuTriggerId = "location-menu-trigger";
-  const locationMenuContentId = "location-menu-content";
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -50,15 +47,8 @@ export default function Topbar() {
             </nav>
 
             <div className="topbar__actions">
-              <DropdownMenu.Root
-                open={locationMenuOpen}
-                onOpenChange={setLocationMenuOpen}
-              >
+              <DropdownMenu.Root modal={false}>
                 <DropdownMenu.Trigger
-                  id={locationMenuTriggerId}
-                  aria-controls={
-                    locationMenuOpen ? locationMenuContentId : undefined
-                  }
                   className="location-trigger"
                   aria-label="Choisir le cabinet"
                 >
@@ -68,13 +58,11 @@ export default function Topbar() {
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Portal>
                   <DropdownMenu.Content
-                    id={locationMenuContentId}
-                    aria-labelledby={locationMenuTriggerId}
                     className="location-menu"
                     align="end"
                     sideOffset={12}
                   >
-                    {locations.map((item) => (
+                    {cabinetLocations.map((item) => (
                       <DropdownMenu.Item
                         key={item}
                         className={`location-item${item === location ? " is-active" : ""}`}
@@ -131,9 +119,14 @@ export default function Topbar() {
 
       <style jsx global>{`
         .topbar {
+          position: -webkit-sticky;
           position: sticky;
           top: 0;
-          z-index: 20;
+          left: 0;
+          right: 0;
+          width: 100%;
+          z-index: 120;
+          isolation: isolate;
           background: rgba(248, 244, 240, 0.82);
           backdrop-filter: blur(18px) saturate(170%);
           border-bottom: none;
@@ -366,28 +359,16 @@ export default function Topbar() {
         .location-menu {
           min-width: 200px;
           padding: 10px 12px;
-          border-radius: 0;
-          background: transparent;
+          border-radius: 16px;
+          background: rgba(253, 249, 246, 0.9);
           border: none;
-          box-shadow: none;
-          backdrop-filter: none;
+          box-shadow: 0 24px 60px rgba(60, 47, 42, 0.22);
+          backdrop-filter: blur(22px) saturate(160%);
           display: grid;
           gap: 6px;
           animation: fadeUp 0.2s ease;
-          z-index: 30;
+          z-index: 160;
           position: relative;
-          isolation: isolate;
-        }
-
-        .location-menu::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: rgba(253, 249, 246, 0.9);
-          backdrop-filter: blur(22px) saturate(160%);
-          box-shadow: 0 24px 60px rgba(60, 47, 42, 0.22);
-          z-index: -1;
-          border-radius: 16px;
         }
 
         .location-item {

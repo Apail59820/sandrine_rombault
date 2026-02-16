@@ -3,11 +3,16 @@
 import Image from "next/image";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import { cn } from "@/app/lib/utils";
+import {
+  type CabinetLocation,
+  useCabinetLocation,
+} from "@/app/context/CabinetLocationContext";
 import styles from "./TeamShowcase.module.css";
 
 interface TeamMember {
   id: string;
   name: string;
+  location: CabinetLocation;
   photo: string;
   photoAlt: string;
   phone: string;
@@ -26,6 +31,7 @@ const teamMembers: TeamMember[] = [
   {
     id: "sandrine-rombaut",
     name: "Sandrine Rombaut",
+    location: "Carvin",
     photo: "/sandrine_rombaut.webp",
     photoAlt: "Portrait de Sandrine Rombaut",
     phone: "06 XX XX XX XX",
@@ -34,6 +40,7 @@ const teamMembers: TeamMember[] = [
   {
     id: "louise-thevel",
     name: "Louise Thével",
+    location: "Carvin",
     photo: "/louise_thevel.jpg",
     photoAlt: "Portrait de Louise Thével",
     phone: "06 XX XX XX XX",
@@ -42,6 +49,7 @@ const teamMembers: TeamMember[] = [
   {
     id: "corentin-smuerzinski",
     name: "Corentin Smuerzinski",
+    location: "Carvin",
     photo: "/corentin_smuerzinski.jpeg",
     photoAlt: "Portrait de Corentin Smuerzinski",
     phone: "06 XX XX XX XX",
@@ -50,6 +58,7 @@ const teamMembers: TeamMember[] = [
   {
     id: "tom-grebert",
     name: "Tom Grebert",
+    location: "Haisnes",
     photo: "/tom_grebert.webp",
     photoAlt: "Portrait de Tom Grebert",
     phone: "06 XX XX XX XX",
@@ -58,6 +67,7 @@ const teamMembers: TeamMember[] = [
   {
     id: "marie-plichon",
     name: "Marie Plichon",
+    location: "Haisnes",
     photo: "/marie_plichon.webp",
     photoAlt: "Portrait de Marie Plichon",
     phone: "06 XX XX XX XX",
@@ -66,10 +76,14 @@ const teamMembers: TeamMember[] = [
 ];
 
 export function TeamShowcase() {
+  const { location } = useCabinetLocation();
   const rootRef = useRef<HTMLDivElement>(null);
   const [openPhoneId, setOpenPhoneId] = useState("");
   const [titleIndex, setTitleIndex] = useState(0);
   const [titleVisible, setTitleVisible] = useState(true);
+  const filteredTeamMembers = teamMembers.filter(
+    (member) => member.location === location
+  );
 
   useEffect(() => {
     const root = rootRef.current;
@@ -140,7 +154,7 @@ export function TeamShowcase() {
       </header>
 
       <div className={styles.grid}>
-        {teamMembers.map((member, index) => {
+        {filteredTeamMembers.map((member, index) => {
           const phonePanelId = `team-phone-${member.id}`;
           const isPhoneOpen = openPhoneId === member.id;
 

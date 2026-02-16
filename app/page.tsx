@@ -27,7 +27,7 @@ export default function Home() {
             <p className="coverage-line">
               Nous intervenons sur les secteurs{" "}
               <span className="coverage-line__places">
-                Carvin / Douvrin / Haines
+                Carvin / Douvrin / Haisnes
               </span>{" "}
               pour accompagner vos enfants.
             </p>

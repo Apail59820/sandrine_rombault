@@ -1,7 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   type CabinetLocation,
   useCabinetLocation,
@@ -231,7 +238,7 @@ export function LocationShowcase() {
           </p>
         </div>
 
-        <div className={styles.masonry} role="list">
+        <div className={styles.masonry} role="list" data-photo-count={photos.length}>
           {photos.map((photo) => (
             <button
               type="button"
@@ -247,7 +254,7 @@ export function LocationShowcase() {
                   alt={photo.alt}
                   width={photo.width}
                   height={photo.height}
-                  sizes="(max-width: 48rem) 92vw, (max-width: 72rem) 46vw, 30vw"
+                  sizes="(max-width: 36rem) 92vw, (max-width: 64rem) 47vw, 33vw"
                   className={styles.galleryImage}
                 />
               </span>
@@ -257,66 +264,69 @@ export function LocationShowcase() {
         </div>
       </section>
 
-      {activePhoto && (
-        <div
-          className={styles.lightbox}
-          role="dialog"
-          aria-modal="true"
-          aria-label={`Aperçu photo du cabinet de ${activeCabinet.label}`}
-        >
-          <button
-            type="button"
-            className={styles.lightboxBackdrop}
-            onClick={closeLightbox}
-            aria-label="Fermer l'aperçu photo"
-          />
-
-          <div className={styles.lightboxContent}>
+      {activePhoto &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            className={styles.lightbox}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Aperçu photo du cabinet de ${activeCabinet.label}`}
+          >
             <button
               type="button"
-              className={styles.lightboxClose}
+              className={styles.lightboxBackdrop}
               onClick={closeLightbox}
-              aria-label="Fermer la galerie"
-            >
-              Fermer
-            </button>
+              aria-label="Fermer l'aperçu photo"
+            />
 
-            {photos.length > 1 && (
-              <>
-                <button
-                  type="button"
-                  className={`${styles.lightboxNav} ${styles.lightboxPrev}`}
-                  onClick={showPreviousPhoto}
-                  aria-label="Photo précédente"
-                >
-                  ←
-                </button>
-                <button
-                  type="button"
-                  className={`${styles.lightboxNav} ${styles.lightboxNext}`}
-                  onClick={showNextPhoto}
-                  aria-label="Photo suivante"
-                >
-                  →
-                </button>
-              </>
-            )}
+            <div className={styles.lightboxContent}>
+              <button
+                type="button"
+                className={styles.lightboxClose}
+                onClick={closeLightbox}
+                aria-label="Fermer la galerie"
+              >
+                Fermer
+              </button>
 
-            <div className={styles.lightboxImageFrame}>
-              <Image
-                src={activePhoto.src}
-                alt={activePhoto.alt}
-                width={activePhoto.width}
-                height={activePhoto.height}
-                sizes="92vw"
-                className={styles.lightboxImage}
-                priority
-              />
+              {photos.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    className={`${styles.lightboxNav} ${styles.lightboxPrev}`}
+                    onClick={showPreviousPhoto}
+                    aria-label="Photo précédente"
+                  >
+                    ←
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.lightboxNav} ${styles.lightboxNext}`}
+                    onClick={showNextPhoto}
+                    aria-label="Photo suivante"
+                  >
+                    →
+                  </button>
+                </>
+              )}
+
+              <div className={styles.lightboxImageFrame}>
+                <Image
+                  src={activePhoto.src}
+                  alt={activePhoto.alt}
+                  width={activePhoto.width}
+                  height={activePhoto.height}
+                  sizes="92vw"
+                  className={styles.lightboxImage}
+                  priority
+                />
+              </div>
+              <p className={styles.lightboxCaption}>{activePhoto.caption}</p>
             </div>
-            <p className={styles.lightboxCaption}>{activePhoto.caption}</p>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </div>
   );
 }

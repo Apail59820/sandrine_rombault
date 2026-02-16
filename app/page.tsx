@@ -81,7 +81,7 @@ export default function Home() {
 
         <SectionDivider
           variant="wave"
-          className="text-surface-warm bg-[rgb(229,234,242)] -mt-6"
+          className="text-surface-warm bg-surface-cool -mt-6"
         />
 
         <Section variant="warm" className="relative overflow-hidden">

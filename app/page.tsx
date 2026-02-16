@@ -7,6 +7,7 @@ import { Section } from "@/app/components/Section";
 import { SectionDivider } from "@/app/components/SectionDivider";
 import { ServicesShowcase } from "@/app/components/ServicesShowcase";
 import { TeamShowcase } from "@/app/components/TeamShowcase";
+import { LocationShowcase } from "@/app/components/LocationShowcase";
 
 export default function Home() {
   return (
@@ -62,6 +63,19 @@ export default function Home() {
           <Container className="relative">
             <TeamShowcase />
           </Container>
+        </Section>
+
+        <SectionDivider
+          variant="steps"
+          className="text-surface-cool bg-surface-warm -mt-6"
+        />
+
+        <Section variant="cool" className="relative overflow-hidden">
+          <div
+            className="absolute inset-0 pattern-dots-warm opacity-60"
+            aria-hidden="true"
+          />
+          <LocationShowcase />
         </Section>
       </main>
     </>

@@ -12,7 +12,7 @@ const navLinks = [
   { label: "A Propos", href: "#a-propos" },
   { label: "Équipe", href: "#equipe" },
   { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
+  { label: "Localisation", href: "#localisation" },
 ];
 
 export default function Topbar() {

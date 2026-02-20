@@ -151,12 +151,15 @@ export function TeamShowcase() {
     >
       <header className={styles.header}>
         <p className={styles.eyebrow}>L&apos;équipe</p>
-        <h2 className={styles.title}>
-          Découvrez{" "}
+        <h2
+          className={`${styles.title} section-title-effects section-title-effects--warm`}
+        >
+          <span className="section-title-effects__first">Découvrez</span>{" "}
           <span
             className={cn(
               styles.rotatingTitle,
-              titleVisible ? styles.rotatingTitleIn : styles.rotatingTitleOut
+              titleVisible ? styles.rotatingTitleIn : styles.rotatingTitleOut,
+              "section-title-effects__last"
             )}
             aria-live="polite"
             aria-atomic="true"

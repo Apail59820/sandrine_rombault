@@ -70,7 +70,12 @@ export function FaqShowcase() {
     <div id="faq" className={styles.shell}>
       <header className={styles.header}>
         <p className={styles.eyebrow}>FAQ</p>
-        <h2 className={styles.title}>Questions fréquentes des familles</h2>
+        <h2
+          className={`${styles.title} section-title-effects section-title-effects--cool`}
+        >
+          <span className="section-title-effects__first">Questions</span>{" "}
+          fréquentes des <span className="section-title-effects__last">familles</span>
+        </h2>
         <p className={styles.intro}>
           Chaque réponse est pensée pour vous donner une vision claire de notre
           accompagnement, de la première évaluation jusqu’au suivi

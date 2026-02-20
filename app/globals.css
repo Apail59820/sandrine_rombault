@@ -114,7 +114,7 @@
 }
 
 :root {
-  --font-heading-serif: var(--font-heading);
+  --font-heading-serif: var(--font-body);
   --font-body-sans: var(--font-body);
 }
 
@@ -286,6 +286,60 @@ h6 {
     @apply text-[2.5rem] md:text-[3.25rem] text-ink-primary leading-[1.1];
     @apply font-heading font-normal;
     @apply mb-4;
+  }
+
+  .section-title-effects {
+    display: inline;
+  }
+
+  .section-title-effects__first,
+  .section-title-effects__last {
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title-effects__first::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: clamp(0.92rem, 1.4vw, 1.18rem);
+    aspect-ratio: 28 / 47;
+    transform: translate(calc(-100% - 0.18em), -50%);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    pointer-events: none;
+  }
+
+  .section-title-effects__last::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: clamp(0.72rem, 1.05vw, 0.98rem);
+    aspect-ratio: 21 / 24;
+    transform: translate(256%, 48%);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    pointer-events: none;
+  }
+
+  .section-title-effects--warm .section-title-effects__first::before {
+    background-image: url("/effects/first_word_effect_warm.svg");
+  }
+
+  .section-title-effects--warm .section-title-effects__last::after {
+    background-image: url("/effects/last_word_effect_warm.svg");
+  }
+
+  .section-title-effects--cool .section-title-effects__first::before {
+    background-image: url("/effects/first_word_effect_cool.svg");
+  }
+
+  .section-title-effects--cool .section-title-effects__last::after {
+    background-image: url("/effects/last_word_effect_cool.svg");
   }
 
   .section-heading-underline {

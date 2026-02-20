@@ -223,7 +223,15 @@ export default function Home() {
           <Container className="relative">
             <SectionHeading
               eyebrow="Nos services"
-              title="Depuis plus de 10 ans"
+              title={
+                <span className="section-title-effects section-title-effects--warm">
+                  <span className="section-title-effects__first">
+                    Depuis
+                  </span>{" "}
+                  plus de 10{" "}
+                  <span className="section-title-effects__last">ans</span>
+                </span>
+              }
             />
             <p className="coverage-line">
               Nous intervenons sur les secteurs{" "}

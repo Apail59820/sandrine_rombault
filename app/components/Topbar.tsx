@@ -165,6 +165,7 @@ export default function Topbar() {
           border-bottom: none;
           box-shadow: 0 26px 56px rgba(60, 47, 42, 0.14);
           overflow: hidden;
+          font-family: var(--font-topbar), ui-sans-serif, system-ui, sans-serif;
         }
 
         .topbar::after {

@@ -232,8 +232,12 @@ export function ServicesShowcase() {
   return (
     <section id="services" className={styles.shell} aria-labelledby="services-title">
       <header className={styles.header}>
-        <h2 id="services-title" className={styles.title}>
-          Nos champs d&apos;intervention
+        <h2
+          id="services-title"
+          className={`${styles.title} section-title-effects section-title-effects--cool`}
+        >
+          <span className="section-title-effects__first">Nos</span> champs{" "}
+          <span className="section-title-effects__last">d&apos;intervention</span>
         </h2>
         <p className={styles.subtitle}>
           Découvrez nos champs d&apos;intervention adaptés à chaque patient, de

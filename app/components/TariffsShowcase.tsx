@@ -55,8 +55,12 @@ export function TariffsShowcase() {
     <div id="tarifs" className={styles.shell}>
       <header className={styles.header}>
         <p className={styles.eyebrow}>Tarifs</p>
-        <h2 className={styles.title}>
-          Des tarifs clairs, humains et pensés pour accompagner chaque parcours
+        <h2
+          className={`${styles.title} section-title-effects section-title-effects--warm`}
+        >
+          <span className="section-title-effects__first">Des</span> tarifs
+          clairs, humains et pensés pour accompagner chaque{" "}
+          <span className="section-title-effects__last">parcours</span>
         </h2>
         <p className={styles.intro}>
           Une tarification lisible pour avancer sereinement, avec des modalités

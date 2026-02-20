@@ -205,9 +205,16 @@ export function LocationShowcase() {
     >
       <header className={styles.header}>
         <p className={styles.eyebrow}>Localisation</p>
-        <h2 className={styles.title}>
-          Deux adresses, une même énergie.
-          <span className={styles.titleAccent}> Votre cabinet est déjà à portée de pas.</span>
+        <h2
+          className={`${styles.title} section-title-effects section-title-effects--cool`}
+        >
+          <span className="section-title-effects__first">Deux</span> adresses,
+          une même énergie.
+          <span className={styles.titleAccent}>
+            {" "}
+            Votre cabinet est déjà à portée de{" "}
+            <span className="section-title-effects__last">pas.</span>
+          </span>
         </h2>
         <p className={styles.intro}>
           Le sélecteur Carvin/Haisnes en haut de page pilote la carte en direct.

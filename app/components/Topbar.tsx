@@ -1,11 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import {
+  CABINET_LOCATION_STORAGE_KEY,
+  type CabinetLocation,
   cabinetLocations,
   useCabinetLocation,
 } from "@/app/context/CabinetLocationContext";
+import { LocationChoiceModal } from "@/app/components/LocationChoiceModal";
 
 const navLinks = [
   { label: "Équipe", href: "#equipe" },
@@ -17,8 +20,30 @@ const navLinks = [
 export default function Topbar() {
   const { location, setLocation } = useCabinetLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showLocationChoiceModal, setShowLocationChoiceModal] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
+  const closeLocationChoiceModal = () => setShowLocationChoiceModal(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const storedLocation = window.localStorage.getItem(
+      CABINET_LOCATION_STORAGE_KEY
+    );
+    const hasStoredLocation = cabinetLocations.some(
+      (cabinetLocation) => cabinetLocation === storedLocation
+    );
+
+    setShowLocationChoiceModal(!hasStoredLocation);
+  }, []);
+
+  const handleLocationSelection = (nextLocation: CabinetLocation) => {
+    setLocation(nextLocation);
+    closeLocationChoiceModal();
+  };
 
   return (
     <>
@@ -52,7 +77,10 @@ export default function Topbar() {
                   aria-label="Choisir le cabinet"
                 >
                   <span className="location-trigger__dot" aria-hidden="true" />
-                  <span className="location-trigger__label">{location}</span>
+                  <span className="location-trigger__content">
+                    <span className="location-trigger__meta">Cabinet</span>
+                    <span className="location-trigger__label">{location}</span>
+                  </span>
                   <span className="chevron" aria-hidden="true" />
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Portal>
@@ -115,6 +143,12 @@ export default function Topbar() {
           </nav>
         </div>
       </header>
+
+      <LocationChoiceModal
+        open={showLocationChoiceModal}
+        currentLocation={location}
+        onSelectLocation={handleLocationSelection}
+      />
 
       <style jsx global>{`
         .topbar {
@@ -313,48 +347,94 @@ export default function Topbar() {
           position: relative;
           display: inline-flex;
           align-items: center;
-          gap: 10px;
-          padding: 8px 6px;
-          border-radius: 0;
-          border: none;
-          background: transparent;
+          gap: 12px;
+          padding: 9px 14px;
+          border-radius: 999px;
+          border: 1px solid rgba(192, 139, 123, 0.38);
+          background: linear-gradient(
+            160deg,
+            rgba(255, 255, 255, 0.97),
+            rgba(252, 246, 241, 0.92)
+          );
           color: #3b2f2a;
           font-weight: 600;
           cursor: pointer;
-          box-shadow: none;
+          box-shadow: 0 14px 32px rgba(60, 47, 42, 0.16);
           transition:
             transform 0.2s ease,
             box-shadow 0.2s ease,
-            color 0.2s ease;
+            color 0.2s ease,
+            border-color 0.2s ease;
+        }
+
+        .location-trigger::before {
+          content: "";
+          position: absolute;
+          inset: -1px;
+          border-radius: inherit;
+          pointer-events: none;
+          background: linear-gradient(
+            130deg,
+            rgba(192, 139, 123, 0.3),
+            rgba(169, 183, 166, 0.2)
+          );
+          opacity: 0;
+          transition: opacity 0.2s ease;
         }
 
         .location-trigger__dot {
-          width: 8px;
-          height: 8px;
+          width: 10px;
+          height: 10px;
           border-radius: 50%;
           background: linear-gradient(135deg, #c08b7b, #a9b7a6);
-          box-shadow: 0 0 0 4px rgba(192, 139, 123, 0.18);
+          box-shadow: 0 0 0 5px rgba(192, 139, 123, 0.2);
+          flex-shrink: 0;
+          animation: locationPulse 2.2s ease-in-out infinite;
+        }
+
+        .location-trigger__content {
+          display: inline-grid;
+          gap: 1px;
+          text-align: left;
+          line-height: 1;
+        }
+
+        .location-trigger__meta {
+          font-size: 0.62rem;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: #7b6d66;
+          font-weight: 600;
         }
 
         .location-trigger__label {
-          letter-spacing: 0.01em;
+          letter-spacing: 0.015em;
+          font-size: 1.02rem;
         }
 
         .location-trigger:hover,
         .location-trigger:focus-visible {
-          transform: translateY(-1px);
-          box-shadow: inset 0 -1px 0 rgba(60, 47, 42, 0.28);
+          transform: translateY(-1px) scale(1.01);
+          border-color: rgba(192, 139, 123, 0.56);
+          box-shadow:
+            0 20px 34px rgba(60, 47, 42, 0.2),
+            0 0 0 4px rgba(192, 139, 123, 0.16);
           outline: none;
         }
 
+        .location-trigger:hover::before,
+        .location-trigger:focus-visible::before {
+          opacity: 1;
+        }
+
         .chevron {
-          width: 10px;
-          height: 10px;
+          width: 11px;
+          height: 11px;
           border-right: 2px solid currentColor;
           border-bottom: 2px solid currentColor;
           transform: rotate(45deg);
-          margin-top: -2px;
-          opacity: 0.6;
+          margin-top: -1px;
+          opacity: 0.72;
         }
 
         .location-menu {
@@ -525,6 +605,16 @@ export default function Topbar() {
           }
         }
 
+        @keyframes locationPulse {
+          0%,
+          100% {
+            box-shadow: 0 0 0 5px rgba(192, 139, 123, 0.2);
+          }
+          50% {
+            box-shadow: 0 0 0 8px rgba(192, 139, 123, 0.12);
+          }
+        }
+
         @media (max-width: 1024px) {
           .topbar__frame {
             gap: 12px;
@@ -574,6 +664,7 @@ export default function Topbar() {
             width: 100%;
             justify-content: space-between;
             margin-left: 0;
+            gap: 8px;
           }
 
           .brand__descriptor {
@@ -587,6 +678,18 @@ export default function Topbar() {
 
           .menu-toggle__label {
             display: none;
+          }
+
+          .location-trigger {
+            padding: 9px 12px;
+          }
+
+          .location-trigger__meta {
+            display: none;
+          }
+
+          .location-trigger__label {
+            font-size: 0.95rem;
           }
         }
 

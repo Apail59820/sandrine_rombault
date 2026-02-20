@@ -13,13 +13,13 @@ import {
 
 export const cabinetLocations = ["Carvin", "Haisnes"] as const;
 export type CabinetLocation = (typeof cabinetLocations)[number];
+export const CABINET_LOCATION_STORAGE_KEY = "cabinet-location";
 
 interface CabinetLocationContextValue {
   location: CabinetLocation;
   setLocation: Dispatch<SetStateAction<CabinetLocation>>;
 }
 
-const STORAGE_KEY = "cabinet-location";
 const LOCATION_CHANGE_EVENT = "cabinet-location-change";
 const CabinetLocationContext = createContext<CabinetLocationContextValue | null>(
   null
@@ -34,7 +34,9 @@ function getCurrentLocation() {
     return cabinetLocations[0];
   }
 
-  const storedLocation = window.localStorage.getItem(STORAGE_KEY);
+  const storedLocation = window.localStorage.getItem(
+    CABINET_LOCATION_STORAGE_KEY
+  );
   return isCabinetLocation(storedLocation) ? storedLocation : cabinetLocations[0];
 }
 
@@ -44,7 +46,7 @@ function subscribeToLocationChanges(callback: () => void) {
   }
 
   const handleStorageChange = (event: StorageEvent) => {
-    if (event.key && event.key !== STORAGE_KEY) return;
+    if (event.key && event.key !== CABINET_LOCATION_STORAGE_KEY) return;
     callback();
   };
 
@@ -85,7 +87,10 @@ export function CabinetLocationProvider({ children }: { children: ReactNode }) {
         return;
       }
 
-      window.localStorage.setItem(STORAGE_KEY, resolvedLocation);
+      window.localStorage.setItem(
+        CABINET_LOCATION_STORAGE_KEY,
+        resolvedLocation
+      );
       window.dispatchEvent(new Event(LOCATION_CHANGE_EVENT));
     },
     []

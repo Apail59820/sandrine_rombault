@@ -132,7 +132,7 @@ function ServiceIcon({ icon }: { icon: ServiceItem["icon"] }) {
     strokeWidth: 1.9,
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,
-    "aria-hidden": "true",
+    "aria-hidden": true,
   };
 
   switch (icon) {

@@ -2,12 +2,14 @@ import { type ReactNode } from "react";
 import { cn } from "@/app/lib/utils";
 
 interface SectionProps {
+  id?: string;
   variant?: "page" | "warm" | "cool" | "charcoal";
   className?: string;
   children: ReactNode;
 }
 
 export function Section({
+  id,
   variant = "page",
   className,
   children,
@@ -21,6 +23,7 @@ export function Section({
 
   return (
     <section
+      id={id}
       className={cn("section-padding", variantClasses[variant], className)}
     >
       {children}

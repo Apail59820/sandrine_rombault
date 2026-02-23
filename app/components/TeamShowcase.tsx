@@ -68,10 +68,10 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: "tom-grebert",
-    name: "Tom Grebert",
+    name: "Tom Grébert",
     location: "Haisnes",
     photo: "/tom_grebert.webp",
-    photoAlt: "Portrait de Tom Grebert",
+    photoAlt: "Portrait de Tom Grébert",
     role: "Ergothérapeute D.E.",
     statement:
       "Interventions orientées vers les habiletés fines, l'organisation motrice et l'autonomie.",

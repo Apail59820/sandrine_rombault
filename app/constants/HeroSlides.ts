@@ -1,3 +1,5 @@
+import { DOCTOLIB_URLS } from "@/app/lib/doctolib";
+
 export const heroSlides = [
   {
     image:
@@ -7,7 +9,7 @@ export const heroSlides = [
     headline: "Ergothérapie pédiatrique à Carvin et Haisnes",
     cta: {
       label: "Prendre rendez-vous",
-      href: "https://www.doctolib.fr/cabinet-paramedical/carvin/cabinet-ergotherapie-sandrine-rombaut?pid=practice-233594",
+      href: DOCTOLIB_URLS.Carvin,
     },
   },
   {
@@ -18,7 +20,7 @@ export const heroSlides = [
     headline: "Des ergothérapeutes spécialisés en pédiatrie",
     cta: {
       label: "Découvrir l'équipe",
-      href: "/equipe",
+      href: "#equipe",
     },
   },
   {
@@ -29,7 +31,7 @@ export const heroSlides = [
     headline: "Spécialistes du développement de l'enfant",
     cta: {
       label: "Nos services",
-      href: "/services",
+      href: "#services",
     },
   },
   {
@@ -40,7 +42,7 @@ export const heroSlides = [
     headline: "Des espaces pensés pour accueillir votre enfant",
     cta: {
       label: "Nos cabinets",
-      href: "/cabinets",
+      href: "#localisation",
     },
   },
 ]

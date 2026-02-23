@@ -1,12 +1,12 @@
 import Link from "next/link";
 
 const navLinks = [
-  { label: "Accueil", href: "/" },
-  { label: "À propos", href: "/a-propos" },
-  { label: "Équipe", href: "/equipe" },
-  { label: "Services", href: "/services" },
-  { label: "Cabinets", href: "/cabinets" },
-  { label: "Contact", href: "/contact" },
+  { label: "Accueil", href: "/#accueil" },
+  { label: "À propos", href: "/#a-propos" },
+  { label: "Équipe", href: "/#equipe" },
+  { label: "Services", href: "/#services" },
+  { label: "Cabinets", href: "/#localisation" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const infoLinks = [

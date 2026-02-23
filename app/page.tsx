@@ -10,11 +10,10 @@ import { TeamShowcase } from "@/app/components/TeamShowcase";
 import { LocationShowcase } from "@/app/components/LocationShowcase";
 import { TariffsShowcase } from "@/app/components/TariffsShowcase";
 import { FaqShowcase } from "@/app/components/FaqShowcase";
+import { DoctolibLink } from "@/app/components/DoctolibLink";
 import Image from "next/image";
 
 export default function Home() {
-  const appointmentUrl =
-    "https://www.doctolib.fr/cabinet-paramedical/carvin/cabinet-ergotherapie-sandrine-rombaut?pid=practice-233594";
   const trainings = [
     {
       title: "TND : autisme, dys, TDAH, TDI - école des TND",
@@ -88,7 +87,11 @@ export default function Home() {
       <main>
         <Hero slides={heroSlides} autoplay interval={6000} />
 
-        <Section variant="warm" className="relative overflow-hidden !pt-20 !pb-20">
+        <Section
+          id="a-propos"
+          variant="warm"
+          className="relative overflow-hidden !pt-20 !pb-20"
+        >
           <div
             className="absolute inset-0 pattern-lines-cool opacity-70"
             aria-hidden="true"
@@ -140,10 +143,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-4 pt-2">
-                  <a
-                    href={appointmentUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <DoctolibLink
                     className="btn-primary group px-8 py-4 text-base shadow-[0_18px_36px_rgba(52,48,46,0.18)] hover:shadow-[0_24px_44px_rgba(52,48,46,0.22)]"
                   >
                     Prendre rendez-vous
@@ -153,7 +153,7 @@ export default function Home() {
                     >
                       →
                     </span>
-                  </a>
+                  </DoctolibLink>
 
                   <a
                     href="#services"
@@ -322,6 +322,7 @@ export default function Home() {
         />
 
         <Section
+          id="contact"
           variant="charcoal"
           className="relative overflow-hidden !pt-[6.5rem] !pb-[6.5rem]"
         >
@@ -366,10 +367,7 @@ export default function Home() {
                 className="mt-10 flex flex-wrap items-center justify-center gap-4"
                 style={{ animation: "revealRise 820ms ease 360ms backwards" }}
               >
-                <a
-                  href={appointmentUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <DoctolibLink
                   className="btn-primary group px-8 py-4 text-base shadow-[0_20px_42px_rgba(10,10,10,0.28)] hover:shadow-[0_24px_48px_rgba(10,10,10,0.35)]"
                 >
                   Réserver une première consultation
@@ -379,7 +377,7 @@ export default function Home() {
                   >
                     →
                   </span>
-                </a>
+                </DoctolibLink>
 
                 <a
                   href="#localisation"

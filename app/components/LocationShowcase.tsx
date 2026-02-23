@@ -211,9 +211,10 @@ export function LocationShowcase() {
           <span className="section-title-effects__first">Deux</span> adresses,
           une même énergie.
           <span className={styles.titleAccent}>
-            {" "}
-            Votre cabinet est déjà à portée de{" "}
-            <span className="section-title-effects__last">pas.</span>
+            {" "}Votre cabinet est déjà à portée de{" "}
+          </span>
+          <span className={styles.titleAccentLast}>
+            pas.
           </span>
         </h2>
         <p className={styles.intro}>

@@ -290,6 +290,10 @@ h6 {
 
   .section-title-effects {
     display: inline;
+    --section-title-effect-start-gap: 0.06em;
+    --section-title-effect-end-gap: 0.06em;
+    --section-title-effect-start-anchor-left: 0;
+    --section-title-effect-end-anchor-right: 0;
   }
 
   .section-title-effects__first,
@@ -302,10 +306,13 @@ h6 {
     content: "";
     position: absolute;
     top: 50%;
-    left: 0;
+    left: var(--section-title-effect-start-anchor-left);
     width: clamp(0.92rem, 1.4vw, 1.18rem);
     aspect-ratio: 28 / 47;
-    transform: translate(calc(-100% - 0.18em), -50%);
+    transform: translate(
+      calc(-100% - var(--section-title-effect-start-gap)),
+      -50%
+    );
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -315,11 +322,11 @@ h6 {
   .section-title-effects__last::after {
     content: "";
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 50%;
+    right: var(--section-title-effect-end-anchor-right);
     width: clamp(0.72rem, 1.05vw, 0.98rem);
     aspect-ratio: 21 / 24;
-    transform: translate(256%, 48%);
+    transform: translate(calc(100% + var(--section-title-effect-end-gap)), -50%);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

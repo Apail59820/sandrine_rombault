@@ -44,17 +44,40 @@
 .titleAccent {
   display: block;
   margin-top: 0.32rem;
-  background: linear-gradient(
+  --title-accent-gradient: linear-gradient(
     92deg,
     rgba(205, 125, 98, 0.98) 0%,
     rgba(60, 137, 161, 0.98) 52%,
     rgba(205, 125, 98, 0.98) 100%
   );
+  background-image: var(--title-accent-gradient);
   background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   animation: headingFlow 9s linear infinite;
+}
+
+.titleAccentLast {
+  position: relative;
+  display: inline-block;
+  color: rgba(60, 137, 161, 0.98);
+  -webkit-text-fill-color: currentColor;
+}
+
+.titleAccentLast::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: clamp(0.72rem, 1.05vw, 0.98rem);
+  aspect-ratio: 21 / 24;
+  transform: translate(calc(100% + 0.06em), -50%);
+  background-image: url("/effects/last_word_effect_cool.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
 }
 
 .intro {

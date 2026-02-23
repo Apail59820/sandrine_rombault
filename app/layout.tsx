@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Calistoga, Montserrat } from "next/font/google";
 import "./globals.css";
+import "./topbar.css";
 import React from "react";
 import { CabinetLocationProvider } from "@/app/context/CabinetLocationContext";
 import { Footer } from "@/app/components/Footer";

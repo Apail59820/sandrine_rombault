@@ -340,7 +340,7 @@ export default function Home() {
                 className="text-[0.72rem] uppercase tracking-[0.2em] text-ink-inverse-muted"
                 style={{ animation: "revealRise 700ms ease 40ms backwards" }}
               >
-                Prêt à démarrer un accompagnement serein ?
+                Un accompagnement construit avec vous, pas à pas
               </p>
 
               <h2

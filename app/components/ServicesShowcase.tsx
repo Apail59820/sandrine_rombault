@@ -1,4 +1,13 @@
+"use client";
+
+import { useRef } from "react";
 import Image from "next/image";
+import {
+  motion,
+  useInView,
+  useReducedMotion,
+  type Variants,
+} from "framer-motion";
 import { cn } from "@/app/lib/utils";
 import styles from "./ServicesShowcase.module.css";
 
@@ -124,6 +133,8 @@ const serviceCategories: ServiceCategory[] = [
   },
 ];
 
+const smoothEase = [0.22, 1, 0.36, 1] as const;
+
 function ServiceIcon({ icon }: { icon: ServiceItem["icon"] }) {
   const sharedProps = {
     viewBox: "0 0 24 24",
@@ -228,10 +239,112 @@ function ServiceIcon({ icon }: { icon: ServiceItem["icon"] }) {
   }
 }
 
+const sectionVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 16,
+    transition: {
+      duration: 0.3,
+      ease: smoothEase,
+      when: "afterChildren",
+    },
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.34,
+      ease: smoothEase,
+      when: "beforeChildren",
+    },
+  },
+};
+
+const headerVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 10,
+    transition: {
+      duration: 0.24,
+      ease: smoothEase,
+    },
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.28,
+      ease: smoothEase,
+    },
+  },
+};
+
+const gridVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 8,
+    transition: {
+      duration: 0.24,
+      ease: smoothEase,
+    },
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.3,
+      ease: smoothEase,
+      staggerChildren: 0.06,
+      delayChildren: 0.01,
+    },
+  },
+};
+
+const tileVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 14,
+    scale: 0.994,
+    transition: {
+      duration: 0.22,
+      ease: smoothEase,
+    },
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.3,
+      ease: smoothEase,
+    },
+  },
+};
+
 export function ServicesShowcase() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const isInView = useInView(sectionRef, {
+    amount: 0.12,
+    margin: "0px 0px -8% 0px",
+  });
+  const shouldReduceMotion = useReducedMotion();
+  const animationState = shouldReduceMotion
+    ? "visible"
+    : isInView
+      ? "visible"
+      : "hidden";
+
   return (
-    <section id="services" className={styles.shell} aria-labelledby="services-title">
-      <header className={styles.header}>
+    <motion.section
+      ref={sectionRef}
+      id="services"
+      className={styles.shell}
+      aria-labelledby="services-title"
+      initial={false}
+      animate={animationState}
+      variants={sectionVariants}
+    >
+      <motion.header className={styles.header} variants={headerVariants}>
         <h2
           id="services-title"
           className={`${styles.title} section-title-effects section-title-effects--cool`}
@@ -243,16 +356,17 @@ export function ServicesShowcase() {
           Découvrez nos champs d&apos;intervention adaptés à chaque patient, de
           l&apos;enfant à la personne âgée.
         </p>
-      </header>
+      </motion.header>
 
-      <div className={styles.bentoGrid}>
+      <motion.div className={styles.bentoGrid} variants={gridVariants}>
         {serviceCategories.map((category) => (
-          <article
+          <motion.article
             key={category.id}
             className={cn(
               styles.tile,
               category.tone === "warm" ? styles.tileWarm : styles.tileCool
             )}
+            variants={tileVariants}
           >
             <div className={styles.tileHeader}>
               <h3 className={styles.tileTitle}>{category.title}</h3>
@@ -285,9 +399,9 @@ export function ServicesShowcase() {
                 ))}
               </div>
             </div>
-          </article>
+          </motion.article>
         ))}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }

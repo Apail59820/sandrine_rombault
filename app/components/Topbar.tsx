@@ -21,6 +21,8 @@ export default function Topbar() {
   const { location, setLocation } = useCabinetLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [showLocationChoiceModal, setShowLocationChoiceModal] = useState(false);
+  const brandDescriptor = `à ${location}`;
+  const brandAriaLabel = `Cabinet d'ergothérapie ${brandDescriptor}`;
 
   const closeMenu = () => setMenuOpen(false);
   const closeLocationChoiceModal = () => setShowLocationChoiceModal(false);
@@ -54,11 +56,11 @@ export default function Topbar() {
             <a
               className="brand"
               href="#accueil"
-              aria-label="Cabinet Sandrine Rombaut"
+              aria-label={brandAriaLabel}
             >
               <span className="brand__text">
-                <span className="brand__name">Sandrine Rombaut</span>
-                <span className="brand__descriptor">Cabinet d&apos;ergothérapie</span>
+                <span className="brand__name">Cabinet d&apos;ergothérapie</span>
+                <span className="brand__descriptor">{brandDescriptor}</span>
               </span>
             </a>
 

@@ -16,7 +16,6 @@ interface TeamMember {
   photo: string;
   photoAlt: string;
   role: string;
-  statement: string;
   phone: string;
   phoneHref?: string;
   emailHref: string;
@@ -37,10 +36,20 @@ const teamMembers: TeamMember[] = [
     photo: "/sandrine_rombaut.webp",
     photoAlt: "Portrait de Sandrine Rombaut",
     role: "Ergothérapeute D.E.",
-    statement:
-      "Bilans et accompagnements personnalisés pour soutenir chaque étape du développement.",
-    phone: "06 XX XX XX XX",
-    emailHref: "mailto:contact@cabinet-sandrine-rombaut.fr",
+    phone: "06 67 47 80 65",
+    phoneHref: "tel:+33667478065",
+    emailHref: "mailto:srombaut.ergo@gmail.com",
+  },
+  {
+    id: "sandrine-rombaut-haisnes",
+    name: "Sandrine Rombaut",
+    location: "Haisnes",
+    photo: "/sandrine_rombaut.webp",
+    photoAlt: "Portrait de Sandrine Rombaut",
+    role: "Ergothérapeute D.E.",
+    phone: "06 67 47 80 65",
+    phoneHref: "tel:+33667478065",
+    emailHref: "mailto:srombaut.ergo@gmail.com",
   },
   {
     id: "louise-thevel",
@@ -49,10 +58,9 @@ const teamMembers: TeamMember[] = [
     photo: "/louise_thevel.jpg",
     photoAlt: "Portrait de Louise Thével",
     role: "Ergothérapeute D.E.",
-    statement:
-      "Suivi centré sur l'autonomie de l'enfant, en lien étroit avec la famille et l'école.",
-    phone: "06 XX XX XX XX",
-    emailHref: "mailto:contact@cabinet-sandrine-rombaut.fr",
+    phone: "06 42 69 07 44",
+    phoneHref: "tel:+33642690744",
+    emailHref: "mailto:louisethevel.pro@gmail.com",
   },
   {
     id: "corentin-smuerzinski",
@@ -61,10 +69,9 @@ const teamMembers: TeamMember[] = [
     photo: "/corentin_smuerzinski.jpeg",
     photoAlt: "Portrait de Corentin Smuerzinski",
     role: "Ergothérapeute D.E.",
-    statement:
-      "Approche progressive et concrète pour renforcer les capacités fonctionnelles au quotidien.",
-    phone: "06 XX XX XX XX",
-    emailHref: "mailto:contact@cabinet-sandrine-rombaut.fr",
+    phone: "06 10 26 85 42",
+    phoneHref: "tel:+33610268542",
+    emailHref: "mailto:csmuerzinskiergo@gmail.com",
   },
   {
     id: "tom-grebert",
@@ -73,10 +80,9 @@ const teamMembers: TeamMember[] = [
     photo: "/tom_grebert.webp",
     photoAlt: "Portrait de Tom Grébert",
     role: "Ergothérapeute D.E.",
-    statement:
-      "Interventions orientées vers les habiletés fines, l'organisation motrice et l'autonomie.",
-    phone: "06 XX XX XX XX",
-    emailHref: "mailto:contact@cabinet-sandrine-rombaut.fr",
+    phone: "06 46 83 61 17",
+    phoneHref: "tel:+33646836117",
+    emailHref: "mailto:tomgrebert.pro@gmail.com",
   },
   {
     id: "marie-plichon",
@@ -85,10 +91,9 @@ const teamMembers: TeamMember[] = [
     photo: "/marie_plichon.webp",
     photoAlt: "Portrait de Marie Plichon",
     role: "Ergothérapeute D.E.",
-    statement:
-      "Accompagnement attentif des jeunes enfants et coordination des relais autour de la famille.",
-    phone: "06 XX XX XX XX",
-    emailHref: "mailto:contact@cabinet-sandrine-rombaut.fr",
+    phone: "07 68 43 55 30",
+    phoneHref: "tel:+33768435530",
+    emailHref: "mailto:marieplichon.pro@gmail.com",
   },
 ];
 
@@ -219,7 +224,6 @@ export function TeamShowcase() {
                   <p className={styles.memberZone}>
                     Secteur {member.location} et alentours
                   </p>
-                  <p className={styles.memberStatement}>{member.statement}</p>
                 </div>
 
                 <div className={styles.actions}>

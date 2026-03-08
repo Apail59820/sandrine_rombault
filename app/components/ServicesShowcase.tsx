@@ -42,9 +42,8 @@ const serviceCategories: ServiceCategory[] = [
   {
     id: "pediatrie",
     title: "Pédiatrie",
-    image:
-      "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1600&q=80",
-    imageAlt: "Enfant accompagnée lors d'une activité pédagogique",
+    image: "/carvin/bureau 2.webp",
+    imageAlt: "Cabinet d'ergothérapie, espace pédiatrique",
     tone: "warm",
     items: [
       {
@@ -88,9 +87,8 @@ const serviceCategories: ServiceCategory[] = [
   {
     id: "adultes-seniors",
     title: "Adultes / Personnes âgées",
-    image:
-      "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1600&q=80",
-    imageAlt: "Mains âgées et accompagnement thérapeutique",
+    image: "/haines/haines_2.jpeg",
+    imageAlt: "Cabinet d'ergothérapie, espace de consultation",
     tone: "cool",
     items: [
       {
@@ -241,8 +239,8 @@ function ServiceIcon({ icon }: { icon: ServiceItem["icon"] }) {
 
 const sectionVariants: Variants = {
   hidden: {
-    opacity: 0,
-    y: 16,
+    opacity: 1,
+    y: 10,
     transition: {
       duration: 0.3,
       ease: smoothEase,
@@ -262,8 +260,8 @@ const sectionVariants: Variants = {
 
 const headerVariants: Variants = {
   hidden: {
-    opacity: 0,
-    y: 10,
+    opacity: 1,
+    y: 8,
     transition: {
       duration: 0.24,
       ease: smoothEase,
@@ -281,8 +279,8 @@ const headerVariants: Variants = {
 
 const gridVariants: Variants = {
   hidden: {
-    opacity: 0,
-    y: 8,
+    opacity: 1,
+    y: 6,
     transition: {
       duration: 0.24,
       ease: smoothEase,
@@ -302,9 +300,9 @@ const gridVariants: Variants = {
 
 const tileVariants: Variants = {
   hidden: {
-    opacity: 0,
-    y: 14,
-    scale: 0.994,
+    opacity: 1,
+    y: 10,
+    scale: 0.997,
     transition: {
       duration: 0.22,
       ease: smoothEase,
@@ -324,8 +322,9 @@ const tileVariants: Variants = {
 export function ServicesShowcase() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const isInView = useInView(sectionRef, {
-    amount: 0.12,
-    margin: "0px 0px -8% 0px",
+    once: true,
+    amount: 0.01,
+    margin: "0px",
   });
   const shouldReduceMotion = useReducedMotion();
   const animationState = shouldReduceMotion
